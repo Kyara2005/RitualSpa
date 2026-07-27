@@ -16,7 +16,7 @@ export function Testimonials() {
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-12 border-t border-line pt-12 md:grid-cols-3 md:gap-10">
+        <div className="mt-16 grid gap-12 border-t border-line pt-12 md:grid-cols-2 md:gap-14">
           {testimonials.map((item) => (
             <blockquote key={item.name} className="flex flex-col">
               <p className="font-serif text-xl font-medium leading-relaxed text-foreground sm:text-2xl">

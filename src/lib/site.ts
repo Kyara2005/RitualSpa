@@ -21,8 +21,7 @@ export const services = [
     subtitle: "Especialistas en uñas",
     description:
       "Manicure, pedicure y diseños cuidados al detalle. Un ritual de belleza para tus manos y pies.",
-    image:
-      "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/nails.png",
   },
   {
     id: "head-spa",
@@ -30,8 +29,7 @@ export const services = [
     subtitle: "Hidratación capilar",
     description:
       "Tratamiento coreano de relajación e hidratación profunda para cuero cabelludo y cabello.",
-    image:
-      "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/head-spa.png",
   },
   {
     id: "lashes",
@@ -39,61 +37,39 @@ export const services = [
     subtitle: "Laminado coreano",
     description:
       "Lifting y laminado coreano para una mirada abierta, natural y de larga duración.",
-    image:
-      "https://images.unsplash.com/photo-1583001931096-959e9a1a6223?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/pestanas.png",
   },
 ] as const;
 
 export const gallery = [
   {
-    src: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=900&q=80",
-    alt: "Detalle de manicure en Ritual Spa",
-    span: "tall",
+    src: "/images/galeria1.png",
+    alt: "Manicure burgundy con detalles en blanco",
+    label: "Nail art",
   },
   {
-    src: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=80",
-    alt: "Cuidado de uñas profesional",
-    span: "wide",
+    src: "/images/antes.png",
+    alt: "Antes del tratamiento capilar",
+    label: "Antes",
   },
   {
-    src: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=900&q=80",
-    alt: "Ambiente de belleza y spa",
-    span: "square",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=900&q=80",
-    alt: "Ritual de cuidado facial y mirada",
-    span: "square",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=900&q=80",
-    alt: "Hidratación y cuidado capilar",
-    span: "wide",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=80",
-    alt: "Momento de relajación en spa",
-    span: "tall",
+    src: "/images/despues.png",
+    alt: "Después del ritual de células madres",
+    label: "Después",
   },
 ] as const;
 
 export const testimonials = [
   {
     quote:
-      "Salí renovada. El Head Spa es otro nivel: relajación real y el cabello quedó increíble.",
-    name: "Camila R.",
-    detail: "Head Spa Coreano",
+      "Ame demasiado el trabajo de Ori, es una excelente profesional, hace diseños increíbles. Desde que me hago las uñas con ella siempre están lindas, largas y full fuertes. Excelente servicio.",
+    name: "Camila Rodriguez Salme",
+    detail: "Nail Salon · 5 estrellas",
   },
   {
     quote:
-      "El espacio es calmado y premium. Mis uñas quedaron impecables y la atención es muy cuidada.",
-    name: "Valentina M.",
-    detail: "Nail Salon",
-  },
-  {
-    quote:
-      "El lifting de pestañas se ve natural y elegante. Definitivamente mi nuevo ritual favorito.",
-    name: "Andrea P.",
-    detail: "Pestañas / Lifting",
+      "Ambiente limpio, tranquilo y muy agradable. El personal es profesional y atento. El corte quedó excelente y el masaje fue muy relajante. Servicio completo de gran calidad. Sin duda volveré.",
+    name: "Dayana Maricela Singo",
+    detail: "Servicio completo · 5 estrellas",
   },
 ] as const;

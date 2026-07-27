@@ -18,28 +18,43 @@ export function Gallery() {
             </h2>
           </div>
           <p className="max-w-sm text-sm font-light leading-relaxed text-muted">
-            Detalles de belleza, cuidado y calma en un espacio minimalista.
+            Nail art, hidratación y el resultado de cada ritual.
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:grid-rows-2 md:gap-5">
+        <div className="mt-14 grid gap-4 sm:gap-5 md:grid-cols-2">
           {gallery.map((item, index) => {
-            const className =
-              index === 0
-                ? "gallery-item relative col-span-2 aspect-[4/3] overflow-hidden md:col-span-2 md:row-span-2 md:aspect-auto md:h-full"
-                : index === 1
-                  ? "gallery-item relative aspect-[4/3] overflow-hidden md:col-span-2"
-                  : "gallery-item relative aspect-[4/3] overflow-hidden";
-
+            const featured = index === 0;
             return (
-              <figure key={item.src} className={className}>
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  className="object-cover"
-                />
+              <figure
+                key={item.src}
+                className={`gallery-item relative ${
+                  featured ? "md:col-span-2" : ""
+                }`}
+              >
+                <div
+                  className={`relative overflow-hidden ${
+                    featured
+                      ? "aspect-[16/10] sm:aspect-[21/9]"
+                      : "aspect-[3/4] sm:aspect-[4/5]"
+                  }`}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes={
+                      featured
+                        ? "100vw"
+                        : "(max-width: 768px) 100vw, 50vw"
+                    }
+                    className="object-cover"
+                    priority={featured}
+                  />
+                </div>
+                <figcaption className="mt-4 text-[0.7rem] tracking-[0.22em] text-muted uppercase">
+                  {item.label}
+                </figcaption>
               </figure>
             );
           })}
