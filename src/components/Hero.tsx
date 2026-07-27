@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/paths";
 import { site } from "@/lib/site";
 
 export function Hero() {
@@ -23,7 +24,7 @@ export function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-6 pb-16 pt-28 sm:px-8 sm:pb-20">
         <div className="animate-rise max-w-xl">
           <Image
-            src="/logo-mark.png"
+            src={assetPath("/logo-mark.png")}
             alt="Ritual Spa"
             width={420}
             height={140}

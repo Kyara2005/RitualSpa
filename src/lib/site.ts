@@ -1,3 +1,5 @@
+import { assetPath } from "./paths";
+
 export const site = {
   name: "Ritual Spa",
   tagline: "Ritual Spa — Nails — Hair",
@@ -21,7 +23,7 @@ export const services = [
     subtitle: "Especialistas en uñas",
     description:
       "Manicure, pedicure y diseños cuidados al detalle. Un ritual de belleza para tus manos y pies.",
-    image: "/images/nails.png",
+    image: assetPath("/images/nails.png"),
   },
   {
     id: "head-spa",
@@ -29,7 +31,7 @@ export const services = [
     subtitle: "Hidratación capilar",
     description:
       "Tratamiento coreano de relajación e hidratación profunda para cuero cabelludo y cabello.",
-    image: "/images/head-spa.png",
+    image: assetPath("/images/head-spa.png"),
   },
   {
     id: "lashes",
@@ -37,23 +39,23 @@ export const services = [
     subtitle: "Laminado coreano",
     description:
       "Lifting y laminado coreano para una mirada abierta, natural y de larga duración.",
-    image: "/images/pestanas.png",
+    image: assetPath("/images/pestanas.png"),
   },
 ] as const;
 
 export const gallery = [
   {
-    src: "/images/galeria1.png",
+    src: assetPath("/images/galeria1.png"),
     alt: "Manicure burgundy con detalles en blanco",
     label: "Nail art",
   },
   {
-    src: "/images/antes.png",
+    src: assetPath("/images/antes.png"),
     alt: "Antes del tratamiento capilar",
     label: "Antes",
   },
   {
-    src: "/images/despues.png",
+    src: assetPath("/images/despues.png"),
     alt: "Después del ritual de células madres",
     label: "Después",
   },
