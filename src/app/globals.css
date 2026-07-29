@@ -8,6 +8,7 @@
   --line: rgba(23, 26, 24, 0.12);
   --accent: #2a342e;
   --hero-ink: #f4f6f4;
+  --glow: rgba(42, 52, 46, 0.18);
 }
 
 @theme inline {
@@ -62,6 +63,37 @@ body {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
 .animate-rise {
   animation: rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -94,6 +126,256 @@ body {
   animation: drift 18s ease-in-out infinite;
 }
 
+.float-soft {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+.pulse-soft {
+  animation: pulse-soft 3.5s ease-in-out infinite;
+}
+
+/* CTA primary — light on dark / dark on light */
+.btn-book {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  overflow: hidden;
+  padding: 0.95rem 1.85rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+.btn-book::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.btn-book:hover {
+  transform: translateY(-3px);
+}
+
+.btn-book:hover::before {
+  animation: shimmer 0.85s ease;
+}
+
+.btn-book:active {
+  transform: translateY(-1px);
+}
+
+.btn-book-light {
+  background: var(--hero-ink);
+  color: var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.btn-book-light:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+.btn-book-dark {
+  background: var(--accent);
+  color: var(--hero-ink);
+  box-shadow: 0 10px 28px var(--glow);
+}
+
+.btn-book-dark:hover {
+  background: #1d2521;
+  box-shadow: 0 16px 36px rgba(42, 52, 46, 0.28);
+}
+
+.btn-book-outline {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.btn-book-outline:hover {
+  border-color: var(--accent);
+  background: rgba(42, 52, 46, 0.04);
+  box-shadow: 0 10px 24px var(--glow);
+}
+
+.btn-book-ghost {
+  background: transparent;
+  color: var(--hero-ink);
+  border: 1px solid rgba(244, 246, 244, 0.35);
+  box-shadow: none;
+}
+
+.btn-book-ghost:hover {
+  background: rgba(244, 246, 244, 0.1);
+  border-color: rgba(244, 246, 244, 0.7);
+  box-shadow: none;
+}
+
+.btn-book-gold {
+  background: linear-gradient(135deg, #e4c78a 0%, #c9a96e 48%, #a8864a 100%);
+  color: #16120e;
+  box-shadow: 0 12px 32px rgba(201, 169, 110, 0.28);
+}
+
+.btn-book-gold:hover {
+  background: linear-gradient(135deg, #edd4a0 0%, #d4b57a 48%, #b89455 100%);
+  box-shadow: 0 18px 40px rgba(201, 169, 110, 0.4);
+}
+
+.btn-arrow {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-book:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.service-media img {
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-media:hover img {
+  transform: scale(1.04);
+}
+
+.reel-card {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+
+.reel-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(20, 24, 22, 0.18);
+}
+
+.reel-card:hover .reel-play {
+  transform: scale(1.08);
+  background: rgba(244, 246, 244, 0.95);
+}
+
+.trend-card {
+  transition: box-shadow 0.45s ease;
+}
+
+.trend-card:hover {
+  box-shadow: 0 22px 48px rgba(20, 24, 22, 0.2);
+}
+
+.watchlist-track {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(42, 52, 46, 0.35) transparent;
+}
+
+/* Custom cursor */
+.has-cursor-fx,
+.has-cursor-fx * {
+  cursor: none !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+  border-radius: 9999px;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #f4f6f4;
+}
+
+.cursor-ring {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(244, 246, 244, 0.85);
+  transition: border-color 0.25s ease;
+}
+
+.cursor-ring.is-hover {
+  border-color: #c9a96e;
+  mix-blend-mode: normal;
+  background: rgba(201, 169, 110, 0.12);
+}
+
+/* Nail stamps painted by cursor in Hero — soft, behind frosted veil */
+.nail-paint-layer {
+  opacity: 0.72;
+  filter: blur(1.5px) saturate(0.9);
+}
+
+.nail-stamp {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  border: 1px solid rgba(244, 246, 244, 0.12);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  aspect-ratio: 1;
+  filter: brightness(0.88) contrast(0.95);
+}
+
+.nail-stamp img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Flat WhatsApp button — always bottom-right */
+.wa-flat {
+  background: #25d366;
+  color: #fff;
+  padding: 0.95rem 1.25rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 0;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.35);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.wa-flat:hover {
+  background: #1ebe57;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(37, 211, 102, 0.45);
+}
+
+.wa-flat:active {
+  transform: translateY(-1px);
+}
+
+@media (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -104,11 +386,28 @@ body {
   .animate-rise-delay-2,
   .animate-rise-delay-3,
   .hero-media,
-  .drift-soft {
+  .drift-soft,
+  .float-soft,
+  .pulse-soft {
     animation: none !important;
   }
 
-  .gallery-item:hover img {
+  .gallery-item:hover img,
+  .service-media:hover img,
+  .btn-book:hover,
+  .btn-book:hover .btn-arrow,
+  .reel-card:hover,
+  .trend-card:hover img,
+  .wa-flat:hover {
     transform: none;
+  }
+
+  .btn-book::before {
+    display: none;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
   }
 }

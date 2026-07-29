@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
+import { Cormorant_Garamond, Raleway } from "next/font/google";
 import "./globals.css";
 
 const raleway = Raleway({
   variable: "--font-raleway",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +33,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${raleway.variable} h-full antialiased`}>
+    <html
+      lang="es"
+      className={`${raleway.variable} ${cormorant.variable} h-full antialiased`}
+    >
       <body className={`${raleway.className} min-h-full flex flex-col`}>
         {children}
       </body>
