@@ -319,10 +319,9 @@ body {
   background: rgba(201, 169, 110, 0.12);
 }
 
-/* Nail stamps painted by cursor in Hero — soft, behind frosted veil */
+/* Nail stamps — light layer, no heavy blur */
 .nail-paint-layer {
-  opacity: 0.72;
-  filter: blur(1.5px) saturate(0.9);
+  opacity: 0.65;
 }
 
 .nail-stamp {
@@ -330,10 +329,9 @@ body {
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
-  border: 1px solid rgba(244, 246, 244, 0.12);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(244, 246, 244, 0.1);
   aspect-ratio: 1;
-  filter: brightness(0.88) contrast(0.95);
+  contain: layout paint;
 }
 
 .nail-stamp img {

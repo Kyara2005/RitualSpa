@@ -68,7 +68,7 @@ export const services = [
     subtitle: "Especialistas en uñas",
     description:
       "Manicure, pedicure y diseños cuidados al detalle. Un ritual de belleza para tus manos y pies.",
-    image: assetPath("/images/nails.png"),
+    image: assetPath("/images/opt/nails.jpg"),
   },
   {
     id: "head-spa",
@@ -76,7 +76,7 @@ export const services = [
     subtitle: "Hidratación capilar",
     description:
       "Tratamiento coreano de relajación e hidratación profunda para cuero cabelludo y cabello.",
-    image: assetPath("/images/head-spa.png"),
+    image: assetPath("/images/opt/head-spa.jpg"),
   },
   {
     id: "lashes",
@@ -84,7 +84,7 @@ export const services = [
     subtitle: "Laminado coreano",
     description:
       "Lifting y laminado coreano para una mirada abierta, natural y de larga duración.",
-    image: assetPath("/images/pestanas.png"),
+    image: assetPath("/images/opt/pestanas.jpg"),
   },
 ] as const;
 
@@ -107,13 +107,13 @@ export const headSpa = {
     },
   ],
   halo: {
-    src: assetPath("/images/head-spa/halo.png"),
+    src: assetPath("/images/opt/head-spa/halo.jpg"),
     alt: "Water halo dorado del Head Spa Coreano",
     label: "El ritual",
     caption: "Water Halo · Relajación profunda",
   },
   result: {
-    src: assetPath("/images/head-spa/resultado.png"),
+    src: assetPath("/images/opt/head-spa/resultado.jpg"),
     alt: "Cabello largo brillante después del Head Spa",
     label: "El resultado",
     caption: "Brillo glass · Cabello revitalizado",
@@ -129,7 +129,8 @@ export const nailTrends = [
     subtitle: "Azules suaves y aura",
     description:
       "Tonos dusty, baby blue y ombré ahumado para una manicure sofisticada.",
-    image: assetPath("/images/trends/muted-blue.png"),
+    image: assetPath("/images/opt/trends/muted-blue.jpg"),
+    stamp: assetPath("/images/opt/trends/muted-blue-stamp.jpg"),
   },
   {
     id: "perladas",
@@ -137,7 +138,8 @@ export const nailTrends = [
     subtitle: "Acabado glazed",
     description:
       "Brillo perlado en rosa, sage, nude y limón. El efecto glass del momento.",
-    image: assetPath("/images/trends/perladas.png"),
+    image: assetPath("/images/opt/trends/perladas.jpg"),
+    stamp: assetPath("/images/opt/trends/perladas-stamp.jpg"),
   },
   {
     id: "unas-cafes",
@@ -145,7 +147,8 @@ export const nailTrends = [
     subtitle: "Mocha & espresso",
     description:
       "Chocolate, caramelo y espresso: tonos cálidos que elevan cualquier look.",
-    image: assetPath("/images/trends/unas-cafes.png"),
+    image: assetPath("/images/opt/trends/unas-cafes.jpg"),
+    stamp: assetPath("/images/opt/trends/unas-cafes-stamp.jpg"),
   },
   {
     id: "micro-french",
@@ -153,7 +156,8 @@ export const nailTrends = [
     subtitle: "Línea mínima",
     description:
       "Base nude con tip ultrafino en burdeos, blanco, negro o lila.",
-    image: assetPath("/images/trends/micro-french.png"),
+    image: assetPath("/images/opt/trends/micro-french.jpg"),
+    stamp: assetPath("/images/opt/trends/micro-french-stamp.jpg"),
   },
   {
     id: "dot-nails",
@@ -161,23 +165,24 @@ export const nailTrends = [
     subtitle: "Puntos minimalistas",
     description:
       "Polka dots delicados sobre bases crema, perla o pastel. Limpio y trendy.",
-    image: assetPath("/images/trends/dot-nails.png"),
+    image: assetPath("/images/opt/trends/dot-nails.jpg"),
+    stamp: assetPath("/images/opt/trends/dot-nails-stamp.jpg"),
   },
 ] as const;
 
 export const gallery = [
   {
-    src: assetPath("/images/galeria1.png"),
+    src: assetPath("/images/opt/galeria1.jpg"),
     alt: "Manicure burgundy con detalles en blanco",
     label: "Nail art",
   },
   {
-    src: assetPath("/images/antes.png"),
+    src: assetPath("/images/opt/antes.jpg"),
     alt: "Antes del tratamiento capilar",
     label: "Antes",
   },
   {
-    src: assetPath("/images/despues.png"),
+    src: assetPath("/images/opt/despues.jpg"),
     alt: "Después del ritual de células madres",
     label: "Después",
   },

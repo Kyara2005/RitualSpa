@@ -1,4 +1,4 @@
-import { CursorFX } from "@/components/CursorFX";
+import { ClientEffects } from "@/components/ClientEffects";
 import { FloatingBook } from "@/components/FloatingBook";
 import { Footer } from "@/components/Footer";
 import { Gallery } from "@/components/Gallery";
@@ -15,7 +15,7 @@ import { Testimonials } from "@/components/Testimonials";
 export default function Home() {
   return (
     <>
-      <CursorFX />
+      <ClientEffects />
       <Header />
       <main className="flex-1">
         <Hero />

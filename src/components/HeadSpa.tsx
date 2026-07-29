@@ -64,7 +64,7 @@ export function HeadSpa() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
-                priority
+                loading="lazy"
               />
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(14,12,10,0.15)_0%,transparent_35%,rgba(14,12,10,0.78)_100%)]" />
               <figcaption className="absolute inset-x-0 bottom-0 p-6 sm:p-8">

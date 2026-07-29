@@ -18,15 +18,15 @@ export const metadata: Metadata = {
 };
 
 const collage = [
-  assetPath("/images/trends/muted-blue.png"),
-  assetPath("/images/trends/perladas.png"),
-  assetPath("/images/nails.png"),
-  assetPath("/images/head-spa/halo.png"),
-  assetPath("/images/trends/unas-cafes.png"),
-  assetPath("/images/pestanas.png"),
-  assetPath("/images/trends/micro-french.png"),
-  assetPath("/images/head-spa/resultado.png"),
-  assetPath("/images/galeria1.png"),
+  assetPath("/images/opt/trends/muted-blue.jpg"),
+  assetPath("/images/opt/trends/perladas.jpg"),
+  assetPath("/images/opt/nails.jpg"),
+  assetPath("/images/opt/head-spa/halo.jpg"),
+  assetPath("/images/opt/trends/unas-cafes.jpg"),
+  assetPath("/images/opt/pestanas.jpg"),
+  assetPath("/images/opt/trends/micro-french.jpg"),
+  assetPath("/images/opt/head-spa/resultado.jpg"),
+  assetPath("/images/opt/galeria1.jpg"),
 ] as const;
 
 const links = [
@@ -86,16 +86,16 @@ export default function TreePage() {
             </div>
           ))}
         </div>
-        <div className="absolute inset-0 bg-[rgba(12,14,13,0.62)] backdrop-blur-[2px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(201,169,110,0.16),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,14,13,0.35)_0%,rgba(12,14,13,0.55)_50%,rgba(12,14,13,0.78)_100%)]" />
+        <div className="absolute inset-0 bg-[rgba(12,14,13,0.68)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(201,169,110,0.14),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,14,13,0.3)_0%,rgba(12,14,13,0.55)_50%,rgba(12,14,13,0.78)_100%)]" />
       </div>
 
-      <main className="relative z-10 mx-auto flex w-full max-w-md flex-1 flex-col items-center justify-center px-6 py-14 sm:py-18">
+      <main className="relative z-10 mx-auto flex w-full max-w-md flex-1 flex-col items-center justify-center px-6 py-14 sm:py-16">
         <header className="animate-rise flex w-full flex-col items-center text-center">
-          <div className="border border-white/15 bg-white/8 px-8 py-7 backdrop-blur-md">
+          <div className="border border-white/15 bg-white/10 px-8 py-7">
             <Image
-              src={assetPath("/logo-mark.png")}
+              src={assetPath("/images/opt/logo-mark.png")}
               alt="Ritual Spa"
               width={280}
               height={90}

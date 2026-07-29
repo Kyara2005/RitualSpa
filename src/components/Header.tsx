@@ -39,7 +39,7 @@ export function Header() {
         <a href="#inicio" className="flex items-center gap-3">
           {scrolled ? (
             <Image
-              src={assetPath("/logo-mark.png")}
+              src={assetPath("/images/opt/logo-mark.png")}
               alt="Ritual Spa"
               width={120}
               height={40}
