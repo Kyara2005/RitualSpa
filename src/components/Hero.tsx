@@ -9,11 +9,33 @@ import { nailTrends, site } from "@/lib/site";
 
 const stamps = nailTrends.map((t) => t.stamp);
 
+const stack = [
+  {
+    src: assetPath("/images/opt/trends/muted-blue.jpg"),
+    alt: "Tendencia Muted Blue",
+    className:
+      "z-[1] -rotate-6 translate-x-2 sm:-translate-x-4 scale-[0.92] opacity-90",
+  },
+  {
+    src: assetPath("/images/opt/french-manicure.jpg"),
+    alt: "French manicure Ritual Spa",
+    className: "z-[3] rotate-0 scale-105 shadow-[0_24px_60px_rgba(0,0,0,0.45)]",
+    featured: true,
+  },
+  {
+    src: assetPath("/images/opt/trends/perladas.jpg"),
+    alt: "Tendencia Perladas",
+    className:
+      "z-[2] rotate-6 -translate-x-2 sm:translate-x-4 scale-[0.92] opacity-90",
+  },
+] as const;
+
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const stackRef = useRef<HTMLDivElement>(null);
   const stampIndex = useRef(0);
   const lastPaint = useRef(0);
   const rafParallax = useRef(0);
@@ -24,12 +46,12 @@ export function Hero() {
     const canvas = canvasRef.current;
     const bg = bgRef.current;
     const content = contentRef.current;
+    const stackEl = stackRef.current;
     if (!section || !canvas || !bg || !content) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fine = window.matchMedia("(pointer: fine)").matches;
 
-    // Prefetch tiny stamps once (not full trend images)
     stamps.forEach((src) => {
       const img = new window.Image();
       img.decoding = "async";
@@ -37,14 +59,28 @@ export function Hero() {
     });
 
     if (!reduce) {
-      gsap.from(content.children, {
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      tl.from(content.children, {
         y: 20,
         opacity: 0,
-        duration: 0.55,
+        duration: 0.5,
         stagger: 0.07,
-        ease: "power2.out",
         clearProps: "all",
       });
+      if (stackEl) {
+        tl.from(
+          stackEl.children,
+          {
+            y: 40,
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.55,
+            stagger: 0.1,
+            clearProps: "transform,opacity",
+          },
+          "-=0.25",
+        );
+      }
     }
 
     if (reduce || !fine) return;
@@ -149,7 +185,7 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="inicio"
-      className="relative flex min-h-[100svh] items-center overflow-hidden"
+      className="relative flex min-h-[100svh] items-end overflow-hidden sm:items-center"
     >
       <div
         ref={bgRef}
@@ -164,7 +200,7 @@ export function Hero() {
           sizes="100vw"
           className="object-cover object-[center_30%]"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,12,11,0.58)_0%,rgba(10,12,11,0.45)_45%,rgba(10,12,11,0.8)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,12,11,0.62)_0%,rgba(10,12,11,0.5)_40%,rgba(10,12,11,0.88)_100%)]" />
       </div>
 
       <div
@@ -175,37 +211,37 @@ export function Hero() {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[6] bg-[rgba(10,12,11,0.32)]"
+        className="pointer-events-none absolute inset-0 z-[6] bg-[rgba(10,12,11,0.28)]"
       />
 
       <div
         ref={contentRef}
-        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-20 pt-28 text-center sm:px-8 sm:pb-24"
+        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-10 pt-28 text-center sm:px-8 sm:pb-14"
       >
         <p className="text-[0.68rem] font-medium tracking-[0.35em] text-hero-ink/65 uppercase">
           Quito · Ecuador
         </p>
 
-        <div className="mt-8">
+        <div className="mt-7">
           <Image
             src={assetPath("/images/opt/logo-mark.png")}
             alt="Ritual Spa"
             width={360}
             height={120}
             priority
-            className="mx-auto h-auto w-[min(72vw,300px)] brightness-0 invert"
+            className="mx-auto h-auto w-[min(70vw,280px)] brightness-0 invert"
           />
         </div>
 
-        <p className="mt-7 text-[0.78rem] font-medium tracking-[0.32em] text-hero-ink/80 uppercase">
+        <p className="mt-6 text-[0.78rem] font-medium tracking-[0.32em] text-hero-ink/80 uppercase">
           {site.tagline}
         </p>
 
-        <p className="mt-6 max-w-md text-sm font-light leading-relaxed text-hero-ink/80 sm:text-base">
+        <p className="mt-5 max-w-md text-sm font-light leading-relaxed text-hero-ink/80 sm:text-base">
           {site.support}
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <BookButton
             href={site.whatsapp}
             label="Agendar por WhatsApp"
@@ -217,6 +253,28 @@ export function Hero() {
           >
             Ver servicios
           </a>
+        </div>
+
+        <div
+          ref={stackRef}
+          className="hero-stack mt-12 flex w-full max-w-lg items-end justify-center sm:mt-14"
+          aria-label="Looks destacados"
+        >
+          {stack.map((item) => (
+            <figure
+              key={item.src}
+              className={`hero-stack-card relative aspect-[3/4] w-[38%] overflow-hidden border border-white/20 bg-[#1a201c] ${item.className}`}
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                sizes="(max-width: 640px) 40vw, 200px"
+                priority={"featured" in item}
+                className="object-cover"
+              />
+            </figure>
+          ))}
         </div>
       </div>
     </section>

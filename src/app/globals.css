@@ -341,6 +341,35 @@ body {
   display: block;
 }
 
+.hero-stack {
+  perspective: 800px;
+}
+
+.hero-stack-card {
+  margin-inline: -0.85rem;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+@media (min-width: 640px) {
+  .hero-stack-card {
+    margin-inline: -1.35rem;
+  }
+}
+
+.hero-stack:hover .hero-stack-card:nth-child(1) {
+  transform: translateX(-1.25rem) rotate(-10deg) scale(0.94);
+}
+
+.hero-stack:hover .hero-stack-card:nth-child(2) {
+  transform: translateY(-0.5rem) scale(1.08);
+}
+
+.hero-stack:hover .hero-stack-card:nth-child(3) {
+  transform: translateX(1.25rem) rotate(10deg) scale(0.94);
+}
+
 /* Flat WhatsApp button — always bottom-right */
 .wa-flat {
   background: #25d366;
@@ -396,7 +425,8 @@ body {
   .btn-book:hover .btn-arrow,
   .reel-card:hover,
   .trend-card:hover img,
-  .wa-flat:hover {
+  .wa-flat:hover,
+  .hero-stack:hover .hero-stack-card {
     transform: none;
   }
 
