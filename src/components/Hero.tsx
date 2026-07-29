@@ -9,33 +9,30 @@ import { nailTrends, site } from "@/lib/site";
 
 const stamps = nailTrends.map((t) => t.stamp);
 
-const stack = [
+const cover = [
   {
     src: assetPath("/images/opt/trends/muted-blue.jpg"),
     alt: "Tendencia Muted Blue",
-    className:
-      "z-[1] -rotate-6 translate-x-2 sm:-translate-x-4 scale-[0.92] opacity-90",
+    className: "hero-cover-left",
   },
   {
     src: assetPath("/images/opt/french-manicure.jpg"),
     alt: "French manicure Ritual Spa",
-    className: "z-[3] rotate-0 scale-105 shadow-[0_24px_60px_rgba(0,0,0,0.45)]",
+    className: "hero-cover-center",
     featured: true,
   },
   {
     src: assetPath("/images/opt/trends/perladas.jpg"),
     alt: "Tendencia Perladas",
-    className:
-      "z-[2] rotate-6 -translate-x-2 sm:translate-x-4 scale-[0.92] opacity-90",
+    className: "hero-cover-right",
   },
 ] as const;
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
+  const coverRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const stackRef = useRef<HTMLDivElement>(null);
   const stampIndex = useRef(0);
   const lastPaint = useRef(0);
   const rafParallax = useRef(0);
@@ -44,10 +41,9 @@ export function Hero() {
   useEffect(() => {
     const section = sectionRef.current;
     const canvas = canvasRef.current;
-    const bg = bgRef.current;
+    const coverEl = coverRef.current;
     const content = contentRef.current;
-    const stackEl = stackRef.current;
-    if (!section || !canvas || !bg || !content) return;
+    if (!section || !canvas || !coverEl || !content) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fine = window.matchMedia("(pointer: fine)").matches;
@@ -59,28 +55,26 @@ export function Hero() {
     });
 
     if (!reduce) {
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-      tl.from(content.children, {
-        y: 20,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.07,
-        clearProps: "all",
-      });
-      if (stackEl) {
-        tl.from(
-          stackEl.children,
+      gsap
+        .timeline({ defaults: { ease: "power2.out" } })
+        .from(coverEl.children, {
+          y: 36,
+          opacity: 0,
+          scale: 0.92,
+          duration: 0.7,
+          stagger: 0.12,
+        })
+        .from(
+          content.children,
           {
-            y: 40,
+            y: 18,
             opacity: 0,
-            scale: 0.9,
-            duration: 0.55,
-            stagger: 0.1,
-            clearProps: "transform,opacity",
+            duration: 0.5,
+            stagger: 0.06,
+            clearProps: "all",
           },
-          "-=0.25",
+          "-=0.35",
         );
-      }
     }
 
     if (reduce || !fine) return;
@@ -157,15 +151,15 @@ export function Hero() {
     const onParallax = (e: MouseEvent) => {
       const rect = section.getBoundingClientRect();
       pendingParallax.current = {
-        x: ((e.clientX - rect.left) / rect.width - 0.5) * 14,
-        y: ((e.clientY - rect.top) / rect.height - 0.5) * 8,
+        x: ((e.clientX - rect.left) / rect.width - 0.5) * 10,
+        y: ((e.clientY - rect.top) / rect.height - 0.5) * 6,
       };
       if (rafParallax.current) return;
       rafParallax.current = requestAnimationFrame(() => {
         rafParallax.current = 0;
         const p = pendingParallax.current;
         if (!p) return;
-        bg.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`;
+        coverEl.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`;
       });
     };
 
@@ -185,23 +179,36 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="inicio"
-      className="relative flex min-h-[100svh] items-end overflow-hidden sm:items-center"
+      className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#0c0e0d]"
     >
       <div
-        ref={bgRef}
-        className="absolute inset-[-2%] will-change-transform"
+        ref={coverRef}
+        className="hero-cover absolute inset-0 z-0 flex items-center justify-center will-change-transform"
         style={{ transition: "transform 0.2s ease-out" }}
+        aria-hidden
       >
-        <Image
-          src={assetPath("/images/opt/nails.jpg")}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_30%]"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,12,11,0.62)_0%,rgba(10,12,11,0.5)_40%,rgba(10,12,11,0.88)_100%)]" />
+        {cover.map((item) => (
+          <div key={item.src} className={`hero-cover-card ${item.className}`}>
+            <Image
+              src={item.src}
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 768px) 70vw, 42vw"
+              className="object-cover"
+            />
+          </div>
+        ))}
       </div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(180deg,rgba(10,12,11,0.55)_0%,rgba(10,12,11,0.35)_40%,rgba(10,12,11,0.78)_100%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[3] bg-[radial-gradient(ellipse_at_50%_45%,transparent_20%,rgba(10,12,11,0.55)_100%)]"
+      />
 
       <div
         ref={canvasRef}
@@ -210,13 +217,8 @@ export function Hero() {
       />
 
       <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-[6] bg-[rgba(10,12,11,0.28)]"
-      />
-
-      <div
         ref={contentRef}
-        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-10 pt-28 text-center sm:px-8 sm:pb-14"
+        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-16 pt-28 text-center sm:px-8 sm:pb-20"
       >
         <p className="text-[0.68rem] font-medium tracking-[0.35em] text-hero-ink/65 uppercase">
           Quito · Ecuador
@@ -241,7 +243,7 @@ export function Hero() {
           {site.support}
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <BookButton
             href={site.whatsapp}
             label="Agendar por WhatsApp"
@@ -253,28 +255,6 @@ export function Hero() {
           >
             Ver servicios
           </a>
-        </div>
-
-        <div
-          ref={stackRef}
-          className="hero-stack mt-12 flex w-full max-w-lg items-end justify-center sm:mt-14"
-          aria-label="Looks destacados"
-        >
-          {stack.map((item) => (
-            <figure
-              key={item.src}
-              className={`hero-stack-card relative aspect-[3/4] w-[38%] overflow-hidden border border-white/20 bg-[#1a201c] ${item.className}`}
-            >
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                sizes="(max-width: 640px) 40vw, 200px"
-                priority={"featured" in item}
-                className="object-cover"
-              />
-            </figure>
-          ))}
         </div>
       </div>
     </section>

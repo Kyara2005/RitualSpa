@@ -341,33 +341,73 @@ body {
   display: block;
 }
 
-.hero-stack {
-  perspective: 800px;
+.hero-cover {
+  perspective: 1200px;
 }
 
-.hero-stack-card {
-  margin-inline: -0.85rem;
-  transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.45s ease;
+.hero-cover-card {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid rgba(244, 246, 244, 0.18);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (min-width: 640px) {
-  .hero-stack-card {
-    margin-inline: -1.35rem;
+.hero-cover-left {
+  width: min(52vw, 380px);
+  aspect-ratio: 3 / 4;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  transform: translate(-92%, -52%) rotate(-8deg) scale(0.92);
+  opacity: 0.88;
+}
+
+.hero-cover-center {
+  width: min(62vw, 460px);
+  aspect-ratio: 3 / 4;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.02);
+}
+
+.hero-cover-right {
+  width: min(52vw, 380px);
+  aspect-ratio: 3 / 4;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  transform: translate(-8%, -48%) rotate(8deg) scale(0.92);
+  opacity: 0.88;
+}
+
+@media (min-width: 768px) {
+  .hero-cover-left {
+    width: min(36vw, 420px);
+    transform: translate(-108%, -54%) rotate(-9deg) scale(0.94);
+  }
+
+  .hero-cover-center {
+    width: min(40vw, 500px);
+  }
+
+  .hero-cover-right {
+    width: min(36vw, 420px);
+    transform: translate(8%, -50%) rotate(9deg) scale(0.94);
   }
 }
 
-.hero-stack:hover .hero-stack-card:nth-child(1) {
-  transform: translateX(-1.25rem) rotate(-10deg) scale(0.94);
+.hero-cover:hover .hero-cover-left {
+  transform: translate(-100%, -54%) rotate(-12deg) scale(0.96);
 }
 
-.hero-stack:hover .hero-stack-card:nth-child(2) {
-  transform: translateY(-0.5rem) scale(1.08);
+.hero-cover:hover .hero-cover-center {
+  transform: translate(-50%, -52%) scale(1.05);
 }
 
-.hero-stack:hover .hero-stack-card:nth-child(3) {
-  transform: translateX(1.25rem) rotate(10deg) scale(0.94);
+.hero-cover:hover .hero-cover-right {
+  transform: translate(0%, -50%) rotate(12deg) scale(0.96);
 }
 
 /* Flat WhatsApp button — always bottom-right */
@@ -425,8 +465,7 @@ body {
   .btn-book:hover .btn-arrow,
   .reel-card:hover,
   .trend-card:hover img,
-  .wa-flat:hover,
-  .hero-stack:hover .hero-stack-card {
+  .wa-flat:hover {
     transform: none;
   }
 
